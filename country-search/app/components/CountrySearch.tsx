@@ -15,6 +15,7 @@ const CountrySearch: React.FC = () => {
     const [searchError, setSearchError] = useState<string | null>(null);
 
     const isSearchTermValid = searchTerm.length >= 3;
+    const selectedOptionClass = "border-2 border-blue-500"; 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,6 +68,7 @@ const CountrySearch: React.FC = () => {
                         if (term.length < 3 && term.length !== 0) {
                             setSearchError("Search term must be at least 3 characters.");
                             setNoData(false);
+                            setSelectedCountry(null);
                         } else {
                             setSearchError(null);
                             setNoData(false);
@@ -96,8 +98,10 @@ const CountrySearch: React.FC = () => {
                             <li
                                 key={country.name.common}
                                 onClick={() => handleSelectCountry(country)}
-                                className="cursor-pointer bg-white rounded-lg p-4 m-2 transition-all hover:shadow-md flex items-center"
-                            >
+                                className={`cursor-pointer bg-white rounded-lg p-4 m-2 transition-all hover:shadow-md flex items-center ${
+                                    selectedCountry === country ? selectedOptionClass : ""
+                                  }`}
+                                        >
                                 <Image
                                     src={country.flags[0]}
                                     alt="Flag"
