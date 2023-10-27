@@ -1,9 +1,11 @@
+import CountrySearch from "./components/CountrySearch";
 
-
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <main>
-      HELLO
-    </main>
-  )
-}
+    <div className="container mx-auto p-4">
+      <CountrySearch />
+    </div>
+  );
+};
+
+export default Home;
