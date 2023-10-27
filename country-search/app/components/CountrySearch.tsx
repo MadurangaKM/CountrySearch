@@ -15,7 +15,7 @@ const CountrySearch: React.FC = () => {
     const [searchError, setSearchError] = useState<string | null>(null);
 
     const isSearchTermValid = searchTerm.length >= 3;
-    const selectedOptionClass = "border-2 border-blue-500"; 
+    const selectedOptionClass = "border-2 border-blue-500";
 
     useEffect(() => {
         const fetchData = async () => {
@@ -92,21 +92,20 @@ const CountrySearch: React.FC = () => {
             {loading && <p className="my-4 text-gray-500">Loading...</p>}
             {noData && <p className="my-4 text-gray-500">No data found.</p>}
             {isSearchTermValid && !loading && !noData && (
-                <div className="mt-4">
-                    <ul>
+                <div className="mt-4 mb-10">
+                    <ul className="w-full h-60 overflow-y-auto bg-slate-200">
                         {countries.map((country) => (
                             <li
                                 key={country.name.common}
                                 onClick={() => handleSelectCountry(country)}
-                                className={`cursor-pointer bg-white rounded-lg p-4 m-2 transition-all hover:shadow-md flex items-center ${
-                                    selectedCountry === country ? selectedOptionClass : ""
-                                  }`}
-                                        >
+                                className={`cursor-pointer bg-white rounded-lg p-4 m-2 transition-all hover:shadow-md flex items-center ${selectedCountry === country ? selectedOptionClass : ""
+                                    }`}
+                            >
                                 <Image
                                     src={country.flags[0]}
                                     alt="Flag"
                                     className="w-10 h-10 object-cover rounded-full mr-4"
-                                    width={40}
+                                    width={100}
                                     height={40}
                                 />
                                 <span>{country.name.common}</span>
@@ -115,42 +114,45 @@ const CountrySearch: React.FC = () => {
                     </ul>
                 </div>
             )}
-            {selectedCountry && isSearchTermValid && !loading && !noData && (
-                <div className="mt-4">
-                    <h2 className="text-2xl font-bold">
-                        {selectedCountry.name.official}
-                    </h2>
-                    {selectedCountry.currencies && (
-                        <>
-                            <ul>
-                                {Object.entries(selectedCountry.currencies).map(
-                                    ([code, currency]) => {
-                                        const currencyInfo: { name: string; symbol: string } =
-                                            currency as any;
-                                        return (
-                                            <li key={code}>
-                                                <p>Currency: {currencyInfo.name}</p>
-                                                <p>Symbol: {currencyInfo.symbol}</p>
-                                            </li>
-                                        );
-                                    }
-                                )}
-                            </ul>
-                        </>
-                    )}
-                    {selectedCountry.flags && (
+            {selectedCountry && searchTerm.length >= 3 && !loading && !noData && (
+                <a
+                    href="#"
+                    className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 "
+                >
+                    <div className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg pl-10">
                         <Image
                             src={selectedCountry.flags[0]}
                             alt="Flag"
-                            className="my-4 max-w-xs"
-                            width={120}
-                            height={30}
+                            width={0}
+                            height={0}
+                            style={{ width: '80%', height: '100%' }} // optional
+                            className="object-cover rounded-t-lg mr-10"
                         />
-                    )}
-                    {selectedCountry.car && (
-                        <p>Drive on the {selectedCountry.car.side} side of the road</p>
-                    )}
-                </div>
+                    </div>
+                    <div className="flex flex-col justify-between p-4 leading-normal">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                            {selectedCountry.name.common}
+                        </h5>
+                        {selectedCountry.currencies && (
+                            <ul>
+                                {Object.entries(selectedCountry.currencies).map(([code, currency]) => {
+                                    const currencyInfo: { name: string; symbol: string } = currency as any;
+                                    return (
+                                        <li key={code} className="mb-2 text-gray-600">
+                                            <p>Currency: {currencyInfo.name}</p>
+                                            <p>Symbol: {currencyInfo.symbol}</p>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        )}
+                        {selectedCountry.car && (
+                            <p className="font-normal text-gray-700">
+                                Drive on the {selectedCountry.car.side} side of the road
+                            </p>
+                        )}
+                    </div>
+                </a>
             )}
         </div>
     );
