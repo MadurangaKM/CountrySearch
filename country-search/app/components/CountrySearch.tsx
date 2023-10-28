@@ -55,8 +55,8 @@ const CountrySearch: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 text-center font-poppins md:w-1/2 md:mt-15">
-            <h1 className="text-2xl font-bold mb-4 ">Country Search</h1>
+        <div className="container mx-auto p-4 text-center  md:w-1/2 md:mt-15">
+            <h1 className="text-2xl font-semibold mb-4 tracking-tight">Country Search</h1>
             <div className="relative w-full mb-4 ">
                 <input
                     type="text"
