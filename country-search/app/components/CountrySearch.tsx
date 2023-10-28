@@ -55,9 +55,9 @@ const CountrySearch: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 text-center font-poppins">
+        <div className="container mx-auto p-4 text-center font-poppins md:w-1/2 md:mt-15">
             <h1 className="text-2xl font-bold mb-4 ">Country Search</h1>
-            <div className="relative w-full mb-4">
+            <div className="relative w-full mb-4 ">
                 <input
                     type="text"
                     placeholder="Search for a country..."
@@ -74,26 +74,26 @@ const CountrySearch: React.FC = () => {
                             setNoData(false);
                         }
                     }}
-                    className="w-full px-4 py-2 border rounded shadow-md focus:outline-none focus:ring focus:border-blue-300 pl-12"
+                    className="w-full px-10 py-5 border rounded-lg shadow-lg focus:outline-none focus:ring focus:border-purple-200 pl-12"
                 />
                 {searchTerm && (
                     <span
-                        className="absolute right-4 top-3 text-gray-400 cursor-pointer"
+                        className="absolute right-10 top-6 text-gray-400 cursor-pointer"
                         onClick={clearSearch}
                     >
                         <FontAwesomeIcon icon={faTimes} />
                     </span>
                 )}
-                <span className="absolute left-3 top-3 text-gray-400">
+                <span className="absolute left-5 top-6 text-gray-400">
                     <FontAwesomeIcon icon={faSearch} />
                 </span>
             </div>
-            {searchError && <p className="my-4 text-red-500">{searchError}</p>}
+            {searchError && <p className="my-4 text-red-500 text-left">{searchError}</p>}
             {loading && <p className="my-4 text-gray-500">Loading...</p>}
             {noData && <p className="my-4 text-gray-500">No data found.</p>}
             {isSearchTermValid && !loading && !noData && (
                 <div className="mt-4 mb-10">
-                    <ul className="w-full h-60 overflow-y-auto bg-slate-200">
+                    <ul className="w-full h-60 overflow-y-auto">
                         {countries.map((country) => (
                             <li
                                 key={country.name.common}
@@ -117,7 +117,7 @@ const CountrySearch: React.FC = () => {
             {selectedCountry && searchTerm.length >= 3 && !loading && !noData && (
                 <a
                     href="#"
-                    className="flex flex-col  bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 "
+                    className="flex flex-col  bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row md:max-w-xl "
                 >
                     <div className="object-cover w-full   h-auto md:w-48  ">
                         <Image
@@ -147,7 +147,7 @@ const CountrySearch: React.FC = () => {
                             </ul>
                         )}
                         {selectedCountry.car && (
-                            <p className="font-normal text-gray-700">
+                            <p className="font-normal text-gray-500">
                                 Drive on the {selectedCountry.car.side} side of the road
                             </p>
                         )}
