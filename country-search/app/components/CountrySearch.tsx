@@ -55,8 +55,8 @@ const CountrySearch: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 text-center">
-            <h1 className="text-2xl font-bold mb-4">Country Information App</h1>
+        <div className="container mx-auto p-4 text-center font-poppins">
+            <h1 className="text-2xl font-bold mb-4 ">Country Search</h1>
             <div className="relative w-full mb-4">
                 <input
                     type="text"
@@ -117,19 +117,19 @@ const CountrySearch: React.FC = () => {
             {selectedCountry && searchTerm.length >= 3 && !loading && !noData && (
                 <a
                     href="#"
-                    className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 "
+                    className="flex flex-col  bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 "
                 >
-                    <div className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg pl-10">
+                    <div className="object-cover w-full   h-auto md:w-48  ">
                         <Image
                             src={selectedCountry.flags[0]}
                             alt="Flag"
                             width={0}
                             height={0}
-                            style={{ width: '80%', height: '100%' }} // optional
-                            className="object-cover rounded-t-lg mr-10"
+                            style={{ width: '100%', height: '100%' }} // optional
+                            className="object-cover rounded-tl-lg rounded-tr-lg md:rounded-e-none md:rounded-bl-lg mr-10"
                         />
                     </div>
-                    <div className="flex flex-col justify-between p-4 leading-normal">
+                    <div className="flex flex-col justify-between p-4 leading-normal text-left">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                             {selectedCountry.name.common}
                         </h5>
