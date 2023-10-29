@@ -5,6 +5,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import SelectedCountryDisplay from "./SelectedCountry";
 
 const CountrySearch: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -93,7 +94,7 @@ const CountrySearch: React.FC = () => {
             {noData && <p className="my-4 text-gray-500">No countries found for the search term.</p>}
             {isSearchTermValid && !loading && !noData && (
                 <div className="mt-4 mb-10">
-                    <ul className="w-full h-60 overflow-y-auto">
+                    <ul className="w-full h-60 overflow-y-auto border rounded-lg shadow-lg mt-4">
                         {countries.map((country) => (
                             <li
                                 key={country.name.common}
@@ -115,45 +116,9 @@ const CountrySearch: React.FC = () => {
                 </div>
             )}
             {selectedCountry && searchTerm.length >= 3 && !loading && !noData && (
-                <a
-                    href="#"
-                    className="flex flex-col  bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row md:max-w-xl "
-                >
-                    <div className="object-cover w-full   h-auto md:w-48  ">
-                        <Image
-                            src={selectedCountry.flags[0]}
-                            alt="Flag"
-                            width={0}
-                            height={0}
-                            style={{ width: '100%', height: '100%' }} // optional
-                            className="object-cover rounded-tl-lg rounded-tr-lg md:rounded-e-none md:rounded-bl-lg mr-10"
-                        />
-                    </div>
-                    <div className="flex flex-col justify-between p-4 leading-normal text-left">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                            {selectedCountry.name.common}
-                        </h5>
-                        {selectedCountry.currencies && (
-                            <ul>
-                                {Object.entries(selectedCountry.currencies).map(([code, currency]) => {
-                                    const currencyInfo: { name: string; symbol: string } = currency as any;
-                                    return (
-                                        <li key={code} className="mb-2 text-gray-600">
-                                            <p>Currency: {currencyInfo.name}</p>
-                                            <p>Symbol: {currencyInfo.symbol}</p>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        )}
-                        {selectedCountry.car && (
-                            <p className="font-normal text-gray-500">
-                                Drive on the {selectedCountry.car.side} side of the road
-                            </p>
-                        )}
-                    </div>
-                </a>
+                <SelectedCountryDisplay country={selectedCountry} />
             )}
+
         </div>
     );
 };
