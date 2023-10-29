@@ -74,7 +74,7 @@ const CountrySearch: React.FC = () => {
                             setNoData(false);
                         }
                     }}
-                    className="w-full px-10 py-5 border rounded-lg shadow-lg focus:outline-none focus:ring focus:border-purple-200 pl-12"
+                    className="w-full px-10 py-5 border rounded-lg shadow-lg focus:outline-none   focus:border-blue-500 pl-12 "
                 />
                 {searchTerm && (
                     <span
@@ -90,7 +90,7 @@ const CountrySearch: React.FC = () => {
             </div>
             {searchError && <p className="my-4 text-red-500 text-left">{searchError}</p>}
             {loading && <p className="my-4 text-gray-500">Loading...</p>}
-            {noData && <p className="my-4 text-gray-500">No data found.</p>}
+            {noData && <p className="my-4 text-gray-500">No countries found for the search term.</p>}
             {isSearchTermValid && !loading && !noData && (
                 <div className="mt-4 mb-10">
                     <ul className="w-full h-60 overflow-y-auto">
