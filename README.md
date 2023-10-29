@@ -2,7 +2,7 @@
 
 ### [Live Site](https://country-search-flame.vercel.app/)
 
-![WebAppSample](https://i.ibb.co/T2YSCBd/Screenshot-2023-10-28-at-12-48-48.png)
+![WebAppSample](https://i.ibb.co/Jx7fJTL/Screenshot-2023-10-29-at-19-58-57.png)
 
 ## Introduction
 Country Search: search any country and find the country details
